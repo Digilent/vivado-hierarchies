@@ -15,6 +15,8 @@ Pmod*/constrs/**
 Pmod*/sources/**
 !Pmod*/sources/*.v
 !Pmod*/sources/*.vhd
+!Pmod*/sdk_sources
+!Pmod*/sdk_sources/**
 
 !repo/
 !repo/**

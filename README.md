@@ -1,6 +1,10 @@
 Pmod Hierarchies
 ================
 
+TODO: constraints.
+TODO: SW READMEs.
+TODO: HW READMEs.
+
 Introduction
 ------------
 
@@ -27,6 +31,14 @@ Adding a Pmod Hierarchy to your Design
     `source (path to cloned repo)/(Pmod of choice)/create_hier.tcl`
 
     When the script is finished running, the block design will contain a *Hierarchical Block*, named after the chosen Pmod, with several IP inside of it. The IP will be connected to one another and to the block's ports and pins.
+
+1. Make sure your design has a processor, and a peripheral that can be used for stdout. In the case of Microblaze, a UART IP must be connected to the board's USBUART interface. In the case of Zynq, the MIO UART is used, and does not need to be configured.
+
+1. Connect all of the Hierarchy's AXI interfaces to the processor in your design by clicking on *Run Connection Automation*. and checking all appropriate boxes.
+
+1. Connect any interrupts the Hierarchy may have to the appropriate interrupt interface. For Microblaze, an AXI INTC, for Zynq the irq_f2p port.
+
+1. Connect any additional clocks to clocks of the frequencies specified in the Pmod's README.txt file, found in its folder in this repo.
 
 1. The next step, connecting the Hierarchy's Pmod_out port to pins associated with one of the target FPGA board's Pmod connectors, has several different ways to go.
 

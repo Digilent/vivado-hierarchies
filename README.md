@@ -46,24 +46,19 @@ Adding a Pmod Hierarchy to your Design
 
 	    Make sure to validate your block design, save it, and create an HDL wrapper file.
 
-	    Using this method, you will not have to manually create or edit constraints for the Pmod's pins.
+	    Using this method, you will not have to manually create or edit constraints for the Pmod's pins. `FIXME` this is false
 
 	* If you selected a part instead of a board, or otherwise do not wish to use the *Board Flow*, you will need to create a port to connect to the Hierarchy's Pmod_out port. Select the Pmod_out port, then right click on it and select *Make External*. Select the newly created external interface port (named something like "Pmod_out_0") in the design, and give it a memorable name.
 
 	    Validate your design, and save it. If your block design doesn't a wrapper file, right click on the design in the sources pane and select *Create HDL Wrapper*.
 
-		Download the master XDC file for your board, and add it to the project. Master XDC files for Digilent boards can be found in the [digilent-xdc](https://github.com/Digilent/digilent-xdc) repository on Github.
-		
-		Open the master XDC and HDL wrapper files. Find the template constraints for the Pmod connector you wish to plug the Pmod into. Find the ports that correspond to the external interface ports in the HDL wrapper's port list (typically named things like "(port)_pin1_io"). Edit the XDC file so that the names in the "get_ports" calls for the Pmod connector correspond to the correct port names found in the HDL wrapper.
+		When the Hierarchy was created, a constraint file, named "(Default Hierarchy Name)_Pmod_out.xdc", was imported into the project. This file contains the constraints required when not using the board flow. Uncomment each line starting with "set_property" by removing the leading "#" symbol.
 
-		If your Pmod uses I2C, add the following lines to the master XDC file, replacing (pmod) with the name of the interface as found in your HDL wrapper file:
+        The text "FIXME" appears in several places in the constraint file. These correspond to places where you will need to manually enter values specific to your board and design.
+        
+        Find the correct port names for your Pmod interface by reviewing the port map of the top module near the top of the HDL wrapper file. Enter these port names into the corresponding place in the constraint file (after get_ports, near the end of each line).
 
-		<code>
-		set_property -dict {PULLUP TRUE} [get_ports (pmod)_pin3_io];<br/>
-		set_property -dict {PULLUP TRUE} [get_ports (pmod)_pin4_io];
-		</code>
-
-		If your Pmod requires any other constraints, such as... `FIXME`
+        Download the master XDC file for your board. Master XDC files for Digilent boards can be found in the [digilent-xdc](https://github.com/Digilent/digilent-xdc) repository on Github. Find the LOC property values that correspond to the Pmod connector of your board that you wish to connect your Pmod to. Enter these values into the corresponding LOC fields in the hierarchy's constraint file.
 		
 		`FIXME` validate flow
 
@@ -134,6 +129,7 @@ Directory Structure
         * *Rule*: All files (and modules therein) contained in this folder MUST have unique names. This is meant to help to avoid naming conflicts with files and IPs that may already exist in a project. My preference is to require Pmod*_ as a prefix to module and file names.
     * `constrs/` (WIP)
         * Contains XDC files.
+        * *Rule*: Constraints that are to be used only when the board flow is not being used should be commented out by default. FIXMEs should be used to show where the user must manually enter values.
         * This system may only be able to constrain nets internal to the hierarchy described.
         * This system likely will require the user to edit any added XDCs after a design is completed in order to get the correct port names.
         * Board flow does work with hierarchical blocks, as long as the Pmod Bridge contained in the hierarchy has its "CONFIG.PMOD" parameter set to "Custom" by the bd.tcl script.

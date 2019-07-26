@@ -28,13 +28,21 @@ if { [llength $list_source_files] > 0 } {
 	catch { add_files -fileset sources_1 $list_source_files }
 }
 
-#set list_constr_files [glob -nocomplain [file join [file dirname [info script]] constrs *]]
-#catch { import_files -fileset constrs_1 $list_constr_files }
-## TODO: consider how to determin connected port names...
-
+# Resolve hierarchy name
 set pmod [file tail [file dirname [info script]]]
 for {set idx 0} {[llength [get_bd_cells /${pmod}_${idx}]] > 0} {incr idx} {}
 set nameHier ${pmod}_${idx}; # Find first unused trailing number for a name like PmodNAV_0
+
+# Create temporary copies of each constraint file, affix the hierarchy name to them, then import them into the project
+set list_constr_files [glob -nocomplain [file join [file dirname [info script]] constrs *]]
+set tempdir [file join [file dirname [info script]] temp]
+file mkdir $tempdir
+foreach constr $list_constr_files {
+	file copy ${constr} [file join ${tempdir} ${nameHier}_[file tail ${constr}]]
+}
+set list_temp_constr_files [glob -nocomplain [file join ${tempdir} *]]
+catch { import_files -fileset constrs_1 $list_temp_constr_files }
+file delete -force $tempdir
 
 # call the process created in the bd.tcl script. recreates the described hierarchy
 source [file join [file dirname [info script]] "bd.tcl"]

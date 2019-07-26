@@ -40,7 +40,7 @@ Adding a Pmod Hierarchy to your Design
 
 1. Connect any additional clocks to clocks of the frequencies specified in the Pmod's README.txt file, found in its folder in this repo.
 
-1. The next step, connecting the Hierarchy's Pmod_out port to pins associated with one of the target FPGA board's Pmod connectors, has several different ways to go.
+1. The next step, constraining the Hierarchy's Pmod_out port, has several different workflows.
 
     * If you selected a board while creating the project, you can use the *Board Flow* for this step. Go to Vivado's *Board* tab and find the Pmod connector you wish to connect to the Hierarchy. Right click on the entry, typically named something like "Connector JA", and select *Connect Board Component*. In the popup window, under *Connect to existing IP*, select the "Pmod_out" interface of the Hierarchy's Pmod Bridge IP. Click *OK*.
 
@@ -52,11 +52,16 @@ Adding a Pmod Hierarchy to your Design
 
 	    Validate your design, and save it. If your block design doesn't a wrapper file, right click on the design in the sources pane and select *Create HDL Wrapper*.
 
-		Download the master XDC file for your board, and add it to the project.
+		Download the master XDC file for your board, and add it to the project. Master XDC files for Digilent boards can be found in the [digilent-xdc](https://github.com/Digilent/digilent-xdc) repository on Github.
 		
 		Open the master XDC and HDL wrapper files. Find the template constraints for the Pmod connector you wish to plug the Pmod into. Find the ports that correspond to the external interface ports in the HDL wrapper's port list (typically named things like "(port)_pin1_io"). Edit the XDC file so that the names in the "get_ports" calls for the Pmod connector correspond to the correct port names found in the HDL wrapper.
 
-		If your Pmod uses I2C, `FIXME`.
+		If your Pmod uses I2C, add the following lines to the master XDC file, replacing (pmod) with the name of the interface as found in your HDL wrapper file:
+
+		<code>
+		set_property -dict {PULLUP TRUE} [get_ports (pmod)_pin3_io];<br/>
+		set_property -dict {PULLUP TRUE} [get_ports (pmod)_pin4_io];
+		</code>
 
 		If your Pmod requires any other constraints, such as... `FIXME`
 		

@@ -8,6 +8,7 @@
 !Pmod*/
 Pmod*/**
 !Pmod*/*.tcl
+!Pmod*/README.txt
 !Pmod*/constrs
 Pmod*/constrs/**
 !Pmod*/constrs/*.xdc

@@ -1,0 +1,1 @@
+No additional configuration of BSP or Application projects is required for the Pmod BT2 demo.

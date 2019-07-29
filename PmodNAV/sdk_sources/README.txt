@@ -1,0 +1,1 @@
+In order for the Pmod NAV demo to function properly, the math.h library must be linked in application project settings. For more information see [Xilinx Answer Record 52971](https://www.xilinx.com/support/answers/52971.html).

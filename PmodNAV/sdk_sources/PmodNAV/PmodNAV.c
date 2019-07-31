@@ -1929,7 +1929,7 @@ void NAV_ReadPressurehPa(PmodNAV *InstancePtr) {
    if (dataRawFull & 0x00800000) {
       dataRawFull |= 0xFF000000;
    }
-   InstancePtr->hPa = (int) (dataRawFull / 4096);
+   InstancePtr->hPa = ((float)dataRawFull / 4096.0);
 }
 
 /* ------------------------------------------------------------ */

@@ -217,7 +217,7 @@ void NavDemo_Run(void) {
       // Get appropriate compass string - North is centered on 0 degrees
       printf("    Heading in Degrees: %.2f   Y Direction: %s\n\r", magXYd, str);
 
-      printf("Pressure: %f\n\r", nav.hPa);
+      printf("Pressure: %f hPa\n\r", nav.hPa);
       alt = NavDemo_ConvPresToAltF(Pref, nav.hPa);
       printf("Altitude: %.1f feet\n\r", alt);
 

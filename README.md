@@ -59,6 +59,7 @@ These steps assume that you have already created a working demo project that use
 1. Create a sub-folder of this repo for the new hierarchy. The sub-folder should be named "Pmod*", where * is the name of the specific Pmod (ex: HYGRO).
 1. Create folders named `constrs` and `sources` under the hierarchy's sub-folder.
 1. Create a new hierarchical block, in Vivado IPI - right click on the block diagram's background and select "Create Hierarchy". Move all IPs and module references required to reproduce your design into the new hierarchical block.
+1. Make sure that the Pmod Bridge IP in your design is not connected to a board interface, and that when re-customizing it, the IP Interface PmodOut is set to connect to the "Custom" Board Interface.
 1. Run the command `write_bd_tcl -no_ip_version -hier_blks /(hierarchy) (repo path)/(Pmod*)/bd.tcl` in the Vivado TCL Console, replacing (hierarchy) with the name of the hierarchy you created in step 3, (repo path) with the path to this repository on your filesystem, and (Pmod*) with the name of the subfolder created in step 1.
 1. Create template XDC files and add them to the constrs folder. Any lines that are required regardless of flow should be uncommented. Any lines not required in the Board Flow should be commented out by default. Any comments should use "##" to doubly comment out their line. "FIXME"s should be used anywhere that the user may need to enter a specific value (typically the name of the interface port and pin LOC properties).
 1. Create a README.txt file under the hierarchy's folder in the repo that contains descriptions of any special cases required when a user is constraining or connecting the hierarchy. This typically includes whether interrupts are required, any frequency requirements for clock pins. `FIXME constraints`
@@ -102,8 +103,7 @@ These steps assume that you have already created a working demo project that use
       - The script manages dependencies (IP, module reference sources) and names as a front-end to the bd.tcl script.
    - `bd.tcl`
       - Created using the command: `write_bd_tcl -no_ip_version -hier_blks (hierarchy) bd.tcl`.
-      - When sourced, creates a TCL proc that can be called to recreate the hierarchy.
-      - Further info on this in "Usage" section below.
+      - When sourced by create_hier.tcl, creates a TCL proc that can be called to recreate the hierarchy.
    - `sdk_sources/`
       - Contains files to be copied into (application project)/src in SDK. This includes top level Pmod drivers (Pmod*.c, Pmod*.h) and example main.
       - Note that the SDK files in the initial set of Pmods are only minimally edited from their form in vivado-library.

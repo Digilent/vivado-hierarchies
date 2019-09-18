@@ -1,25 +1,14 @@
 # This script manages dependencies and name resolution for the bd.tcl script
 
-# Determine if any IP dependencies are missing, if they are, add the repo directory to the repo search paths.
-# Care should be taken to avoid duplicates...
-proc ip_not_found {} {
-	# Add any IP dependencies included in the repo directory here
-	set ip_vlnvs [list \
-		digilentinc.com:ip:pmod_bridge:* \
-	]
-	foreach vlnv $ip_vlnvs {
-		if { [llength [get_ipdefs $vlnv]] == 0 } {
-			return 1
-		}
-	}
-	return 0
-}
-if { [ip_not_found] } {
-	set ip_repo_list [get_property IP_REPO_PATHS [current_project]]
-	lappend ip_repo_list [file join [file dirname [file dirname [info script]]] repo]
+# If vivado-hierarchies/repo is not included in the project's list of IP repos, add it
+set ip_repo_list [get_property IP_REPO_PATHS [current_project]]
+set ip_repo_path [file join [file dirname [file dirname [info script]]] repo]
+if {[lsearch $ip_repo_list $ip_repo_path] == -1} {
+	lappend ip_repo_list $ip_repo_path
 	set_property IP_REPO_PATHS $ip_repo_list [current_project]
 	update_ip_catalog
 }
+
 
 # Add source files to the project
 set list_source_files [glob -nocomplain [file join [file dirname [info script]] sources *]]

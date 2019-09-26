@@ -13,7 +13,7 @@ The final section of this document (*Directory Structure - Details*), discusses 
 
 
 1. Clone this repository, using the following command:
-   - `git clone --recursive https://git.digilentinc.com/artvvb/Hierarchical-Pmods`
+   - `git clone --recursive https://github.com/Digilent/vivado-hierarchies.git`
    - Take note of the path to the cloned repository, it will be used later.
 1. Launch Vivado.
 1. Create or open the Vivado Project you wish to use the Pmod in.

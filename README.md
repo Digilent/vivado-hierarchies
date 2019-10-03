@@ -37,7 +37,7 @@ The final section of this document (*Directory Structure - Details*), discusses 
       1. When the Hierarchy was created, a constraint file, named "(Default Hierarchy Name)\_Pmod\_out.xdc", was imported into the project. This file contains the constraints required when not using the board flow. Uncomment each line starting with "set\_property" by removing the leading "#" symbol.
       1. The text "FIXME" appears in several places in the constraint file. These correspond to places where you will need to manually enter values specific to your board and design.
       1. Find the correct port names for your Pmod interface by reviewing the port map of the top module near the top of the HDL wrapper file. Enter these port names into the corresponding place in the constraint file (after get\_ports, near the end of each line).
-      1. Download the master XDC file for your board. Master XDC files for Digilent boards can be found in the [digilent-xdc](https://github.com/Digilent/digilent-xdc) repository on Github. Find the LOC property values that correspond to the Pmod connector of your board that you wish to connect your Pmod to. Enter these values into the corresponding LOC fields in the hierarchy's constraint file.
+      1. Download the master XDC file for your board. Master XDC files for Digilent boards can be found in the [digilent-xdc](https://github.com/Digilent/digilent-xdc) repository on Github. Find the PACKAGE_PIN property values that correspond to the Pmod connector of your board that you wish to connect your Pmod to. Enter these values into the corresponding PACKAGE_PIN fields in the hierarchy's constraint file.
 1. Generate a bitstream.
 1. Export Hardware to SDK.
 1. Launch SDK.

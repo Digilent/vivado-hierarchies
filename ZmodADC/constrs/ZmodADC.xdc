@@ -81,11 +81,3 @@ set_input_delay -clock [get_clocks ADC_DCO_0] -clock_fall -min -add_delay 3.240 
 set_input_delay -clock [get_clocks ADC_DCO_0] -clock_fall -max -add_delay 5.440 [get_ports {nameHier_ADC_DATA_0[*]}]
 set_input_delay -clock [get_clocks ADC_DCO_0] -min -add_delay 3.240 [get_ports {nameHier_ADC_DATA_0[*]}]
 set_input_delay -clock [get_clocks ADC_DCO_0] -max -add_delay 5.440 [get_ports {nameHier_ADC_DATA_0[*]}]
-
-
-
-set_false_path -through [get_pins -filter {NAME =~ *SyncAsync*/oSyncStages_reg[*]/D} -hier]
-set_false_path -through [get_pins -filter {NAME =~ *SyncAsync*/oSyncStages*/PRE || NAME =~ *SyncAsync*/oSyncStages*/CLR} -hier]
-
-set_false_path -through [get_pins -filter {NAME =~ *Inst*Handshake/*/CLR} -hier]
-set_false_path -from [get_cells -hier -filter {NAME =~ *Inst*Handshake/iData_int_reg[*]}] -to [get_cells -hier -filter {NAME=~ *Inst*Handshake/oData_reg[*]}]

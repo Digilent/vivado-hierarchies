@@ -19,5 +19,19 @@ Pmod*/sources/**
 !Pmod*/sdk_sources
 !Pmod*/sdk_sources/**
 
+!Zmod*/
+Zmod*/**
+!Zmod*/*.tcl
+!Zmod*/README.txt
+!Zmod*/constrs
+Zmod*/constrs/**
+!Zmod*/constrs/*.xdc
+!Zmod*/sources
+Zmod*/sources/**
+!Zmod*/sources/*.v
+!Zmod*/sources/*.vhd
+!Zmod*/sdk_sources
+!Zmod*/sdk_sources/**
+
 !repo/
 !repo/**

@@ -6,8 +6,7 @@ https://reference.digilentinc.com/learn/programmable-logic/tutorials/vivado-hier
 
 Hierarchy Requirements
 * Using the Board Flow it requires the board files (Installation steps https://reference.digilentinc.com/reference/software/vivado/board-files?redirect=1 )
-* When using MicroBlaze, if "section `.text' will not fit in region" error appears in SDK project, the user should increase the microblaze_0_local_memory/dlmb_bram_if_cntlr 
-* and the microblaze_0_local_memory/ilmb_bram_if_cntlr range in the Address Editor tab from Vivado Block Design, then generate bistream, export bistream and update the linker script in Xilinx SDK.
+* When using MicroBlaze, if "section `.text' will not fit in region" error appears in SDK project, the user should increase the microblaze_0_local_memory/dlmb_bram_if_cntlr and the microblaze_0_local_memory/ilmb_bram_if_cntlr range in the Address Editor tab from Vivado Block Design, then generate bistream, export bistream and update the linker script in Xilinx SDK.
 
 Constraints
 -----------

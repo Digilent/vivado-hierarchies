@@ -15,6 +15,7 @@ Constraints
 
 
 PmodDA4 Hierarchy demo
+-----------
 
 sdk_sources folder contains the demo and the drivers for the Pmod DA4.
 A 2.5 V peak-to-peak triangle wave of an unspecified frequency is output at channel A.							                                                                         

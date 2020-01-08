@@ -87,13 +87,16 @@ set tempdir [file join $script_dir temp]
 file mkdir $tempdir
 set outfile [open [file join $tempdir "${nameHier}_ZmodADC.xdc"] "w"]
 
+set bdDesign [get_bd_designs -of_objects [get_bd_cells /]]
 set string [read $template]
 regsub -all "nameHier" $string $nameHier string
+regsub -all "bdDesign" $string $bdDesign string
 
 puts $outfile $string
 
 close $outfile
 close $template
+
 
 set list_temp_constr_files [glob -nocomplain [file join ${tempdir} *]]
 catch { import_files -fileset constrs_1 $list_temp_constr_files }

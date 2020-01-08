@@ -1,0 +1,1 @@
+The ZmodDAC hierarchical block is supported by Digilent's Zmod Library. Sources and documentation for the library can be found FIXME LINK.

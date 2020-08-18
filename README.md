@@ -1,5 +1,7 @@
 # Pmod Hierarchies
 
+**IMPORTANT!** *This repository is obsolete, and sources have been moved to the [hierarchies branch of vivado-library](https://github.com/Digilent/vivado-library/tree/hierarchies).*
+
 ## Introduction
 
 This repo contains an experimental system for quickly adding support for a Pmod to a block-diagram based Vivado project. This is intended to replace or coexist with the Pmod IP cores in [vivado-library](https://github.com/Digilent/vivado-library). When compared to Pmod IP cores, this system is intended to (1) make the process of adding support for a new Pmod easier, (2) require significantly less maintenance with each Vivado release, and (3) allow for user modifications to the design.
